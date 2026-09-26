@@ -1,0 +1,8 @@
+_delay: CODE, 1316 0 16
+_c: CODE, 1450 0 106
+_main: CODE, 1780 0 268
+_ic: CODE, 1556 0 106
+_store: CODE, 1662 0 118
+___wmul: CODE, 1408 0 42
+_chk: CODE, 1351 0 25
+Total: 681

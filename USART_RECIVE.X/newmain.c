@@ -1,0 +1,78 @@
+/*
+ * File:   newmain.c
+ * Author: robor
+ *
+ * Created on August 19, 2026, 5:07 PM
+ */
+
+
+
+// PIC16F887 Configuration Bit Settings
+
+// 'C' source line config statements
+
+// CONFIG1
+#pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
+#pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
+#pragma config PWRTE = ON       // Power-up Timer Enable bit (PWRT enabled)
+#pragma config MCLRE = ON       // RE3/MCLR pin function select bit (RE3/MCLR pin function is MCLR)
+#pragma config CP = OFF         // Code Protection bit (Program memory code protection is disabled)
+#pragma config CPD = OFF        // Data Code Protection bit (Data memory code protection is disabled)
+#pragma config BOREN = OFF      // Brown Out Reset Selection bits (BOR disabled)
+#pragma config IESO = ON        // Internal External Switchover bit (Internal/External Switchover mode is enabled)
+#pragma config FCMEN = ON       // Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is enabled)
+#pragma config LVP = OFF        // Low Voltage Programming Enable bit (RB3 pin has digital I/O, HV on MCLR must be used for programming
+
+// CONFIG2
+#pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
+#pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
+
+// #pragma config statements should precede project file includes.
+// Use project enums instead of #define for ON and OFF.
+
+#include <xc.h>
+
+
+unsigned char data;
+
+void delay(unsigned int count){
+    while(--count);
+
+}
+void LCD(unsigned int a, unsigned int b)
+{
+    RE0=a;
+    PORTD=b;
+    RE1=1;
+    delay(10);
+    RE1=0;
+    delay(10);
+}
+
+void main(){
+    PORTE=PORTC=PORTD=0x00;
+    TRISE=TRISD=0X00;
+    TRISC=0X80;
+    ANSEL=ANSELH=0X00;
+    CREN=1;
+    SYNC=0;
+    SPEN=1;
+    BRGH=1;
+    BRG16=0;
+    SPBRG=25;
+LCD(0,0x38);
+LCD(0,0X0E);
+LCD(0,0XE0);
+LCD(0,0X80);
+while(1)
+    {
+    
+        // Wait until data is fully received
+        while(RCIF==0);
+
+        // Read and display the character directly
+        data=RCREG;
+        LCD(1,data);
+    }
+}
+    

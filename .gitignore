@@ -1,0 +1,54 @@
+# ==============================================================================
+# Git Ignore for PIC Microcontroller Projects (MPLAB X & MPLAB v8 / XC8)
+# ==============================================================================
+
+# MPLAB X IDE specific private and temporary files
+**/build/
+**/nbproject/private/
+**/nbproject/*.mk
+**/nbproject/*.bash
+**/nbproject/Makefile-genesis.properties
+**/.generated_files/
+
+# Compiler intermediate objects and temporary files
+*.o
+*.obj
+*.p1
+*.pre
+*.as
+*.lst
+*.rlf
+*.sdb
+*.sym
+*.cmf
+*.mum
+*.d
+*.i
+*.map
+*.cof
+*.mcs
+*.hxl
+*.dep
+*.out
+*.elf
+
+# Backup and editor files
+*.bak
+*~
+*.swp
+.directory
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Ensure source and project files are tracked
+!*.c
+!*.h
+!*.inc
+!*.asm
+!*.hex
+!*.mcp
+!*.mcw
+!Makefile
+!*.xml
+!*.properties

@@ -1,0 +1,9 @@
+_delay: CODE, 912 0 16
+_LCD: CODE, 1016 0 35
+_ncrt: CODE, 1175 0 82
+_main: CODE, 1446 0 602
+_s: CODE, 1257 0 189
+_crt: CODE, 1093 0 82
+_store: CODE, 928 0 18
+___wmul: CODE, 1051 0 42
+Total: 1066

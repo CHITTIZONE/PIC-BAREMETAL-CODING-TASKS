@@ -1,0 +1,6 @@
+_delay: CODE, 308 0 20
+_stop: CODE, 130 0 47
+_LCD: CODE, 220 0 37
+_main: CODE, 21 0 109
+_isr: CODE, 283 0 25
+Total: 238

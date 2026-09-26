@@ -1,0 +1,10 @@
+_LCD: CODE, 1325 0 37
+_show_state: CODE, 1555 0 89
+_main: CODE, 1762 0 286
+_timer0_tick: CODE, 1278 0 15
+_timer0_wait: CODE, 1293 0 32
+___lwdiv: CODE, 1477 0 78
+_LCD_puts: CODE, 1362 0 47
+___lwmod: CODE, 1409 0 68
+_LCD_putnum: CODE, 1644 0 118
+Total: 770

@@ -1,0 +1,85 @@
+/*
+ * File:   ADC_LCD_LM35.c
+ * Author: robor
+ *
+ * Created on August 10, 2026, 12:08 PM
+ */
+
+#pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
+#pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
+#pragma config PWRTE = ON       // Power-up Timer Enable bit (PWRT enabled)
+#pragma config MCLRE = ON       // RE3/MCLR pin function select bit (RE3/MCLR pin function is MCLR)
+#pragma config CP = OFF         // Code Protection bit (Program memory code protection is disabled)
+#pragma config CPD = OFF        // Data Code Protection bit (Data memory code protection is disabled)
+#pragma config BOREN = OFF      // Brown Out Reset Selection bits (BOR disabled)
+#pragma config IESO = ON        // Internal External Switchover bit (Internal/External Switchover mode is enabled)
+#pragma config FCMEN = ON       // Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is enabled)
+#pragma config LVP = OFF        // Low Voltage Programming Enable bit (RB3 pin has digital I/O, HV on MCLR must be used for programming)
+
+// CONFIG2
+#pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
+#pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
+
+// #pragma config statements should precede project file includes.
+// Use project enums instead of #define for ON and OFF.
+
+#include <xc.h>
+
+unsigned int data=0;
+
+void delay(unsigned int count){
+    while(--count);
+}
+void pwm ( unsigned int duty )
+{
+    CCPR1L=duty>>2;
+    DC1B1=duty&0X02;
+    DC1B0=duty&0X01;
+}
+void LCD(unsigned int a, unsigned int b){
+    RE0=a;
+    PORTD=b;
+    RE1=1;
+delay(100);
+RE1=0;
+delay(100);
+
+}
+int temp(void) {
+    unsigned int v = (unsigned long)data * 5000 / 1023; 
+    return v;
+}
+void main()
+{
+    PORTD=PORTE=PORTC=0x00;
+    TRISD=TRISE=TRISC=0x00;
+    PORTA=0x00;
+TRISA=0x01;
+ANSEL=0x01;
+ANSELH=0x00;
+ADCON0=0x81;
+ADCON1=0x80;
+T2CON=0X05;
+TMR2=0;
+PR2=124;
+CCP1CON=0X0C;
+LCD(0,0x38);
+LCD(0,0X0E);
+LCD(0,0X0C);
+while(1)
+{
+    GO=1;
+    while(GO==1);
+    data=ADRESL+(ADRESH<<8);
+    pwm(data);
+    //LCD(0,0X01);
+    int m=temp();
+    LCD(0,0X80);
+    LCD(1,((m/1000))+'0');
+    LCD(1,((m/100)%10)+'0');
+    LCD(1,((m/10)%10)+'0');
+    LCD(1,'.');
+    LCD(1,(m%10)+'0');
+    LCD(1,'C');
+}
+}
