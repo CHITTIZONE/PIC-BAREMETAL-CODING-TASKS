@@ -1,5 +1,16 @@
 # Project Activity and Change Log
 
+## [2026-09-26T10:22:00+05:30]
+- **Action**: Published and Verified Public Repository on GitHub.
+- **Details**:
+  - Initialized git repository locally with default branch `main`.
+  - Configured git ignore patterns to exclude heavy compiler temp files (`.obj`, `.p1`, `.sdb`, etc.) while retaining all source files, project configs, and pre-compiled `.hex` files.
+  - Staged and committed 484 repository assets across all 78 bare-metal PIC projects.
+  - Linked remote `origin` to `https://github.com/CHITTIZONE/PIC-BAREMETAL-CODING-TASKS.git`.
+  - Pushed all commits to `main` branch.
+  - Sanitized local remote URL to remove sensitive auth credentials.
+  - Verified online visibility via GitHub REST API: Confirmed repository is Public (`private: false`), contains full project descriptions, and tracks branch `main`.
+
 ## [2026-09-26T10:15:20+05:30]
 - **Action**: Created Repository Documentation, Ignore Rules, and Licensing.
 - **Details**:

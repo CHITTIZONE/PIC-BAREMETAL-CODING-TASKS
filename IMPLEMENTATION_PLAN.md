@@ -29,7 +29,7 @@ Publish all bare-metal PIC microcontroller coding tasks and mini projects locate
 
 ### 2. Repository Configuration & Hygiene
 - [x] Create a comprehensive `.gitignore` in workspace root to prevent committing huge temporary build artifacts (`build/`, `dist/`, `*.obj`, `*.cof`, `*.lst`, `*.p1`, `*.pre`, `*.sdb`, `*.as`, etc.) while preserving source code (`.c`, `.h`), MPLAB project configs (`.X/nbproject/`, `.mcp`, `.mcw`), and compiled `.hex` files if desired.
-- [ ] Initialize Git repository in `f:/MANFREE/PIC/PIC EXAMPLES`.
+- [x] Initialize Git repository in `f:/MANFREE/PIC/PIC EXAMPLES`.
 - [x] Create rich, professional `README.md` containing:
   - Project Title & Overview
   - Hardware & Software Specifications
@@ -47,6 +47,6 @@ Publish all bare-metal PIC microcontroller coding tasks and mini projects locate
 
 ### 4. GitHub Remote & Publishing
 - [x] Create new repository on GitHub: `PIC-BAREMETAL-CODING-TASKS` (Public).
-- [ ] Link local git repo to remote `origin`.
-- [ ] Stage, commit, and push all projects with clean commit history.
-- [ ] Verify repository visibility and accessibility online.
+- [x] Link local git repo to remote `origin`.
+- [x] Stage, commit, and push all projects with clean commit history.
+- [x] Verify repository visibility and accessibility online.
